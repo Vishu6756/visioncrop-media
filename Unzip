@@ -1,0 +1,21 @@
+name: Unzip ZIP File for Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  unzip-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Unzip the file
+        run: |
+          mkdir website
+          unzip visioncrop_portfolio_with_contact_page.zip -d website
+          mv website/* .
+          rm -rf website
+          rm visioncrop_portfolio_with_contact_page.zip
